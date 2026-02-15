@@ -1,86 +1,92 @@
-const converter = document.querySelector(".convert");
-const mySelect = document.querySelector(".currency-select");
+const convertButton = document.querySelector(".convert");
+const fromSelect = document.querySelector(".from-currency");
+const toSelect = document.querySelector(".to-currency");
+const input = document.querySelector(".digite-o-valor");
 
-function name() {}
-convertValues = async () => {
-  const myInput = document.querySelector(".digite-o-valor").value;
-  const toConvert = document.querySelector(".p-01");
-  const toConverted = document.querySelector(".p-02");
-  const response = await fetch(
-    "https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL,GBP-BRL",
-  );
-  const api = await response.json();
+const valueFrom = document.querySelector(".p-01");
+const valueTo = document.querySelector(".p-02");
 
-  const dolarToDay = api.USDBRL.high;
-  const euroToDay = api.EURBRL.high;
-  const libraToDay = api.GBPBRL.high;
-  const bitcoinToDay = api.BTCBRL.high;
+const fromImage = document.querySelector(".from-image");
+const toImage = document.querySelector(".to-image");
 
-  if (mySelect.value == "dolar") {
-    toConverted.innerHTML = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(myInput / dolarToDay);
-  }
+let rates = {};
 
-  if (mySelect.value == "euro") {
-    toConverted.innerHTML = new Intl.NumberFormat("de-DE", {
-      style: "currency",
-      currency: "EUR",
-    }).format(myInput / euroToDay);
-  }
-
-  if (mySelect.value == "bitcoin") {
-    toConverted.innerHTML = new Intl.NumberFormat("de-DE", {
-      style: "currency",
-      currency: "XPT",
-    }).format(myInput / bitcoinToDay);
-  }
-
-  if (mySelect.value == "libra") {
-    toConverted.innerHTML = new Intl.NumberFormat("en-GB", {
-      style: "currency",
-      currency: "GBP",
-    }).format(myInput / libraToDay);
-  }
-
-  toConvert.innerHTML = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(myInput);
+const currencyInfo = {
+  BRL: {
+    name: "Real",
+    image: "./assets/img-real-brasil.png",
+  },
+  USD: {
+    name: "Dólar",
+    image: "./assets/img-dolar-usa.png",
+  },
+  EUR: {
+    name: "Euro",
+    image: "./assets/img-euro.png",
+  },
+  GBP: {
+    name: "Libra",
+    image: "./assets/libra 1.png",
+  },
+  BTC: {
+    name: "Bitcoin",
+    image: "./assets/bitcoin 1.png",
+  },
 };
 
-function changeCurrency() {
-  const currencyName = document.getElementById("currency-name");
-  const currencyImg = document.querySelector(".dolar-euro");
+async function getRates() {
+  const response = await fetch(
+    "https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,GBP-BRL,BTC-BRL",
+  );
 
-  if (mySelect.value == "dolar") {
-    currencyName.innerHTML = "$ Dólar americano";
-    currencyImg.src = "./assets/img-dolar-usa.png";
-  }
+  const data = await response.json();
 
-  if (mySelect.value == "euro") {
-    currencyName.innerHTML = "€ Euro";
-    currencyImg.src = "./assets/img-euro.png";
-  }
-
-  if (mySelect.value == "bitcoin") {
-    currencyName.innerHTML = "₿ Bitcoin";
-    currencyImg.src = "./assets/bitcoin 1.png";
-  }
-
-  if (mySelect.value == "libra") {
-    currencyName.innerHTML = "£ Libra";
-    currencyImg.src = "./assets/libra 1.png";
-  }
-
-  if (mySelect.value == "real") {
-    currencyName.innerHTML = "R$ Real";
-    currencyImg.src = "./assets/img-real-brasil.png";
-  }
-
-  convertValues();
+  rates = {
+    BRL: 1,
+    USD: Number(data.USDBRL.ask),
+    EUR: Number(data.EURBRL.ask),
+    GBP: Number(data.GBPBRL.ask),
+    BTC: Number(data.BTCBRL.ask),
+  };
 }
 
-mySelect.addEventListener("change", changeCurrency);
-converter.addEventListener("click", convertValues);
+function updateImages() {
+  fromImage.src = currencyInfo[fromSelect.value].image;
+  toImage.src = currencyInfo[toSelect.value].image;
+}
+
+async function convertValues() {
+  if (Object.keys(rates).length === 0) {
+    await getRates();
+  }
+
+  const inputValue = Number(input.value);
+  if (isNaN(inputValue) || input.value === "") return;
+
+  const fromCurrency = fromSelect.value;
+  const toCurrency = toSelect.value;
+
+  const rateFrom = rates[fromCurrency];
+  const rateTo = rates[toCurrency];
+
+  const valueInBRL = inputValue * rateFrom;
+  const finalValue = valueInBRL / rateTo;
+
+  valueFrom.innerHTML = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: fromCurrency,
+  }).format(inputValue);
+
+  valueTo.innerHTML = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: toCurrency,
+  }).format(finalValue);
+}
+
+fromSelect.addEventListener("change", updateImages);
+toSelect.addEventListener("change", updateImages);
+
+convertButton.addEventListener("click", convertValues);
+
+getRates();
+updateImages();

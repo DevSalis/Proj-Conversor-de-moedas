@@ -33,56 +33,48 @@
     </div>
 
     <main>
-      <label class="l-1">
-        CONVERTER <b>DE:</b>
-        <select class="currency-select">
-          <option value="real">R$ Real</option>
+      <label>
+        Converter DE:
+        <select class="from-currency">
+          <option value="BRL">Real</option>
+          <option value="USD">Dólar</option>
+          <option value="EUR">Euro</option>
+          <option value="GBP">Libra</option>
+          <option value="BTC">Bitcoin</option>
         </select>
       </label>
 
-      <label class="l-2">
-        CONVERTER <b>PARA:</b>
-        <select class="currency-select">
-          <option value="dolar">$ Dolar americano</option>
-          <option value="euro">€ Euro</option>
-          <option value="bitcoin">₿ Bitcoin</option>
-          <option value="libra">£ Libra</option>
+      <label>
+        Converter PARA:
+        <select class="to-currency">
+          <option value="USD">Dólar</option>
+          <option value="BRL">Real</option>
+          <option value="EUR">Euro</option>
+          <option value="GBP">Libra</option>
+          <option value="BTC">Bitcoin</option>
         </select>
       </label>
 
-      <label class="l-3">
-        VALOR:
-        <input type="number" class="digite-o-valor" placeholder="R$ 100,00" />
+      <label>
+        Valor:
+        <input type="number" class="digite-o-valor" placeholder="100" />
       </label>
 
-      <button class="convert">CONVERTER</button>
+      <button class="convert">Converter</button>
 
       <section>
         <div class="colunas">
-          <img
-            class="brazil"
-            src="./assets/img-real-brasil.png"
-            alt="Converter-de-real-Brasil"
-          />
-          <p class="p-1" id="currency-name-p1">Real</p>
-          <p class="p-01">R$ 0,0</p>
+          <img class="from-image" src="./assets/img-real-brasil.png" />
+          <p class="p-01"></p>
         </div>
 
         <div class="colunas">
-          <img class="arrow" src="./assets/img-seta.png" alt="seta" />
-        </div>
-
-        <div class="colunas">
-          <img
-            class="dolar-euro"
-            src="./assets/img-dolar-usa.png"
-            alt="converter-para-dolar-USA"
-          />
-          <p class="p-2" id="currency-name">Dolas</p>
-          <p class="p-02">US$ 0,0</p>
+          <img class="to-image" src="./assets/img-dolar-usa.png" />
+          <p class="p-02"></p>
         </div>
       </section>
     </main>
+
     <img
       class="img-omega"
       src="./assets/img-backgrund-moedas-ok.png"
