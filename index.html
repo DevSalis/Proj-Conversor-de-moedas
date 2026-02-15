@@ -1,74 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css" />
     <title>Conversor de moedas</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>
-        <img class="img-01" src="./assets/img-header-moedas.gif" alt="gif-moeda-girando">
-        <h1>CONVERSOR DE <br>MO€DA$<br></h1>
+      <img
+        class="img-01"
+        src="./assets/img-header-moedas.gif"
+        alt="gif-moeda-girando"
+      />
+      <h1>CONVERSOR DE <br />MO€DA$<br /></h1>
     </header>
 
     <div class="header-responsivo">
-
-        <img class="img-01-responsivo" src="./assets/img-header-moedas.gif" alt="gif-moeda-girando">
-        <h1 class="titulo-responsivo">CONVERSOR DE <br>MO€DA$<br></h1>
-        <img class="img-01-responsivo-b" src="./assets/img-header-moedas.gif" alt="gif-moeda-girando">
-
+      <img
+        class="img-01-responsivo"
+        src="./assets/img-header-moedas.gif"
+        alt="gif-moeda-girando"
+      />
+      <h1 class="titulo-responsivo">CONVERSOR DE <br />MO€DA$<br /></h1>
+      <img
+        class="img-01-responsivo-b"
+        src="./assets/img-header-moedas.gif"
+        alt="gif-moeda-girando"
+      />
     </div>
 
     <main>
-        <label class="l-1">
-            CONVERTER <b>DE:</b>
-            <select class="currency-select-l1">
-                <option value="real">R$ Real</option>
-              
-            </select>
-        </label>
+      <label class="l-1">
+        CONVERTER <b>DE:</b>
+        <select class="currency-select">
+          <option value="real">R$ Real</option>
+        </select>
+      </label>
 
-        <label class="l-2">
-            CONVERTER <b>PARA:</b>
-            <select class="currency-select">
-                <option value="dolar">$ Dolar americano</option>
-                <option value="euro">€ Euro</option>
-                <option value="bitcoin">₿ Bitcoin</option>
-                <option value="libra">£ Libra</option>
-            </select>
-        </label>
+      <label class="l-2">
+        CONVERTER <b>PARA:</b>
+        <select class="currency-select">
+          <option value="dolar">$ Dolar americano</option>
+          <option value="euro">€ Euro</option>
+          <option value="bitcoin">₿ Bitcoin</option>
+          <option value="libra">£ Libra</option>
+        </select>
+      </label>
 
-        <label class="l-3">
-            VALOR:
-            <input type="number" class="digite-o-valor" placeholder="R$ 100,00">
-        </label>
+      <label class="l-3">
+        VALOR:
+        <input type="number" class="digite-o-valor" placeholder="R$ 100,00" />
+      </label>
 
-        <button class="convert">CONVERTER</button>
+      <button class="convert">CONVERTER</button>
 
-        <section>
-            <div class="colunas">
-                <img class="brazil" src="./assets/img-real-brasil.png" alt="Converter-de-real-Brasil">
-                <p class="p-1" id="currency-name-p1">Real</p>
-                <p class="p-01">R$ 0,0</p>
-            </div>
+      <section>
+        <div class="colunas">
+          <img
+            class="brazil"
+            src="./assets/img-real-brasil.png"
+            alt="Converter-de-real-Brasil"
+          />
+          <p class="p-1" id="currency-name-p1">Real</p>
+          <p class="p-01">R$ 0,0</p>
+        </div>
 
-            <div class="colunas"><img class="arrow" src="./assets/img-seta.png" alt="seta"></div>
+        <div class="colunas">
+          <img class="arrow" src="./assets/img-seta.png" alt="seta" />
+        </div>
 
-            <div class="colunas">
-                <img class="dolar-euro" src="./assets/img-dolar-usa.png" alt="converter-para-dolar-USA">
-                <p class="p-2" id="currency-name">Dolas</p>
-                <p class="p-02">US$ 0,0</p>
-            </div>
-
-        </section>
+        <div class="colunas">
+          <img
+            class="dolar-euro"
+            src="./assets/img-dolar-usa.png"
+            alt="converter-para-dolar-USA"
+          />
+          <p class="p-2" id="currency-name">Dolas</p>
+          <p class="p-02">US$ 0,0</p>
+        </div>
+      </section>
     </main>
-    <img class="img-omega" src="./assets/img-backgrund-moedas-ok.png" alt="escada-moedas">
-</body>
+    <img
+      class="img-omega"
+      src="./assets/img-backgrund-moedas-ok.png"
+      alt="escada-moedas"
+    />
+  </body>
 
-<script src="./script.js"></script>
-
+  <script src="./script.js"></script>
 </html>
